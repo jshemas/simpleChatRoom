@@ -204,88 +204,6 @@ h6, .h6 {
 	}
 }
 
-/* QA Home & List Pages */
-.question-header:after {
-	clear: both;
-	content: " ";
-	display: block;
-}
-.question-header h2 {
-	float: left;
-}
-.question-header .ask-question-button {
-	float: right;
-}
-.question-header .ask-question-form {
-	padding-top: 50px;
-	padding-bottom: 35px;
-}
-.question-header .ask-question-form input,
-.question-header .ask-question-form textarea {
-	padding-right: 15px;
-	padding-left: 15px;
-}
-.sub-category-list {
-	margin-bottom: 25px;
-}
-
-/* QA Details Page */
-.qa-details-main .question-title {
-	padding-bottom: 10px;
-}
-.qa-details-main .edit-title,
-.qa-details-main .edit-description {
-	margin-bottom: 5px;
-}
-.qa-details-main .question-date p {
-	display: inline;
-	margin-left: 5px;
-}
-.qa-details-main .question-date span {
-	font-size: 20px;
-}
-.qa-details-main .question-details {
-	margin-top: 20px;
-}
-.questionAnswerForm .answer-submit {
-	margin-top: 10px
-}
-.question-answers {
-	margin-top: 30px;
-}
-.question-answers .answer-date {
-	display: inline;
-	font-size: 12px;
-}
-.question-answers .answer-votes {
-	float: left;
-	width: 35px;
-}
-.question-answers .answer-choosen {
-	float: left;
-	width: 25px;
-	margin-top: 20px;
-}
-.question-answers .answer-choosen span {
-	font-size: 25px;
-}
-.question-answers .answer-choosen button {
-	padding-left: 1px;
-	border: 0;
-	background-color: transparent;
-}
-.question-answers .answer-votes button {
-	padding-top: 1px;
-	border: 0;
-	background-color: transparent;
-}
-.question-answers .answer-votes .vote-count {
-	margin-left: 9px;
-}
-.question-answers .user-icon {
-	float: left;
-}
-
 /* Nav Bar */
 .navbar {
 	border: 0;
@@ -337,57 +255,6 @@ h6, .h6 {
 	transition: 0.25s all;
 }
 
-/* Login / Sign Up Pages */
-.text-muted {
-	color: #90939a;
-}
-.signup-or-separator {
-	position: relative;
-	height: 34px;
-	text-align: center;
-	background: none;
-}
-.signup-or-separator hr {
-	width: 90%;
-	margin: -16px auto 10px auto;
-	border-top: 1px solid #dce0e0;
-}
-.signup-or-separator .text {
-	display: inline-block;
-	padding: 8px;
-	margin: 0;
-	background-color: #fff;
-}
-.has-feedback .form-control-feedback {
-	top: 0;
-	left: 0;
-	width: 46px;
-	height: 46px;
-	line-height: 46px;
-	color: #555;
-}
-.password-strength-indicator {
-	position: absolute;
-	top: 10px;
-	right: 0;
-	width: 5px;
-	padding: 0 15px;
-}
-.password-strength-indicator span {
-	display: block;
-	width: 5px;
-	height: 5px;
-	margin-bottom: 2px;
-	background: #ebeef1;
-	border-radius: 5px;
-}
-[class^='ion-'] {
-	font-size: 1.2em;
-}
-.has-feedback .form-control {
-	padding-left: 42.5px;
-}
-
 /* Site Alerts */
 .alert-material {
 	position: fixed;
@@ -404,23 +271,4 @@ h6, .h6 {
 	border-radius: 2px;
 	outline: none;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
-
-/* Inbox Page and Message Pages*/
-.inbox .ion-clock::before,
-.message .ion-clock::before {
-	margin-right: 5px;
-}
-.inbox .btn {
-	margin-bottom: 10px;
-	margin-left: 10px;
-}
-.message .new-message input,
-.message .new-message textarea,
-.message .read-message textarea {
-	padding-right: 15px;
-	padding-left: 15px;
-}
-.message .message-replys {
-	margin-top: 10px;
 }

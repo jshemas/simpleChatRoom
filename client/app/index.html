@@ -24,7 +24,7 @@
 			<% end %>
 		<% end %>
 	</head>
-	<body>
+	<body ng-controller='ChatCtrl'>
 		<!--[if lt IE 7]>
 			<p class='browsehappy'>You are using an<strong>outdated</strong>browser. Please<a href='http://browsehappy.com/'>upgrade your browser</a>to improve your experience.</p>
 		<![endif]-->
@@ -68,7 +68,7 @@
 		<script src='/app/vendor/angular-resource.min.js'></script>
 		<script src='/app/vendor/angular-ui-router.min.js'></script>
 		<script src='/app/vendor/angular-animate.min.js'></script>
-		<script src='/app/vendor/satellizer.js'></script>
+		<script src='/app/vendor/socket.min.js'></script>
 		<% switch @env : %>
 			<% when 'prod' : %>
 				<script src='/app/app.js'></script>
@@ -80,6 +80,8 @@
 				<script src='/app/vendor/ngStrap.tpl.js'></script>
 				<script src='/app/vendor/angular-ui-bootstrap-dropdown.js'></script>
 				<script src='/app/app.js'></script>
+				<script src='/app/controllers/chat.js'></script>
+				<script src='/app/services/chat.js'></script>
 			<% end %>
 		<% end %>
 	</body>

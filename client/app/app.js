@@ -3,6 +3,5 @@ angular.module('simpleChatRoom', ['ngResource', 'ngMessages', 'ui.router', 'ui.b
 		url: '/',
 		templateUrl: '../app/views/home.html'
 	});
-
 	$urlRouterProvider.otherwise('/');
 });
