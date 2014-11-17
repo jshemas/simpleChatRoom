@@ -23,6 +23,9 @@ module.exports = function (grunt) {
 			},
 			testIndex: {
 				src: 'server/tests/index.spec.js'
+			},
+			testChat: {
+				src: 'server/tests/chat.spec.js'
 			}
 		},
 		// protractor e2e tests (client)
@@ -149,7 +152,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	// Tasks.
-	grunt.registerTask('default', ['jshint', 'mochaTest:testIndex']);
+	grunt.registerTask('default', ['jshint', 'mochaTest']);
 	grunt.registerTask('testAll', ['build', 'default', 'express:e2eprod', 'protractor:e2e']);
 	grunt.registerTask('teste2e', ['build', 'express:e2eprod', 'protractor:e2e']);
 	grunt.registerTask('dev', ['express:dev', 'watch']);
