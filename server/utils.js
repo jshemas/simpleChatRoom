@@ -99,10 +99,10 @@ module.exports = {
 	 * validate bool
 	 * @param string bool - user input: bool
 	 */
-	validateBool: function (answerContent, flag) {
+	validateBool: function (content) {
 		//word characters such as 1 or 0
 		//1 characters long
-		if (answerContent === 'true' || answerContent === 'false') {
+		if (content === 'true' || content === 'false') {
 			return;
 		} else {
 			return 'Invalid Bool';
