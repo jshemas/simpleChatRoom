@@ -16,17 +16,17 @@ var app = module.exports = express(),
 
 io.sockets.on('connection', function (socket) {
 	console.log('User has connected!');
-	socket.on('connection name',function(user){
+	socket.on('connection name',function(user) {
 		userName = user.name;
 		clients[user.name] = socket;
 		console.log('user has join and their name is:', user.name);
 		io.sockets.emit('new user', user.name + ' has joined.');
 	});
-	socket.on('message', function(msg){
+	socket.on('message', function(msg) {
 		console.log('message has been sent! The contents is:', msg);
 		io.sockets.emit('message', msg);
 	});
-	socket.on('private message', function(msg){
+	socket.on('private message', function(msg) {
 		console.log('private message has been sent! The contents is:', msg);
 		var fromMsg = {
 			from: userName, 
@@ -34,7 +34,7 @@ io.sockets.on('connection', function (socket) {
 		};
 		clients[msg.to].emit('private message', fromMsg);
 	});
-	socket.on('disconnect', function(){
+	socket.on('disconnect', function() {
 		console.log('user has disconnected!');
 		delete clients[userName];
 	});

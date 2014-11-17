@@ -1,23 +1,37 @@
-<div class='container home'>
-	<div class='panel panel-default'>
-		<div class='panel-heading'>Home Page</div>
-		<div class='panel-body'>
-			<div class='row'>
-				<div class='col-sm-6'>
-					<h2>Heading</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-					<p>
-						<a class='btn btn-primary' href='#'>View details »</a>
-					</p>
-				</div>
-				<div class='col-sm-6'>
-					<h2>Heading</h2>
-					<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-					<p>
-						<a class='btn btn-primary' href='#'>View details »</a>
-					</p>
-				</div>
+<div class='container chat'>
+	<div class='row new-user' ng-if='newUser'>
+		<div class='center-form panel'>
+			<div class='panel-body'>
+				<h2 class='text-center'>Sign Up</h2>
+				<form method='post' ng-submit='signup()' name='signupForm'>
+					<div class='form-group has-feedback' ng-class="{ 'has-error' : signupForm.userName.$invalid && signupForm.userName.$dirty }">
+						<input class='form-control input-lg username-input' type='text' name='userName' ng-model='createUserInfo.username' placeholder='Username' ng-minlength='6' ng-maxlength='40' required autofocus>
+						<span class='form-control-feedback'></span>
+						<div class='help-block text-danger' ng-if='signupForm.userName.$dirty' ng-messages='signupForm.userName.$error'>
+							<div ng-message='required'>Username is required.</div>
+						</div>
+					</div>
+					<button type='submit' ng-disabled='signupForm.$invalid' class='btn btn-lg btn-block btn-primary signup-button'>Sign Up</button>
+				</form>
 			</div>
+		</div>
+	</div>
+	<div class='panel panel-default new-user' ng-if='!newUser'>
+		<div class='panel-heading'>Chat Room</div>
+		<div class='panel-body'>
+			<form method='post' ng-submit='sendMessage()' name='sendMessageForm'>
+				<div class='form-group has-feedback' ng-class="{ 'has-error' : sendMessageForm.content.$invalid && sendMessageForm.content.$dirty }">
+					<input class='form-control input-lg content-input' type='text' name='content' ng-model='createMessageInfo.content' placeholder='Message' ng-minlength='6' ng-maxlength='40' required autofocus>
+					<span class='form-control-feedback'></span>
+				</div>
+				<button type='submit' ng-disabled='sendMessageForm.$invalid' class='btn btn-lg btn-block btn-primary send-message-button'>Send Message</button>
+			</form>
+			<ul>
+				<li ng-if='messages.length != 0' data-ng-repeat='message in messages'>
+					<span>{{message.name}}:</span>
+					<span>{{message.content}}</span>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
