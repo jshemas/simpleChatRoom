@@ -1,9 +1,14 @@
+# MAC
+*.DS_Store
+
 # Logs
 logs
 *.log
+npm-debug.log
 
 # Runtime data
 pids
+results
 *.pid
 *.seed
 
@@ -26,3 +31,6 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# build project
+dist/
