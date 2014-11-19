@@ -272,3 +272,13 @@ h6, .h6 {
 	outline: none;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
+
+/* Chat Room */
+.chat-room-contents {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 150px;
+}
+.message-contents {
+	word-wrap: break-word;
+}
