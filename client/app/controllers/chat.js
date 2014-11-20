@@ -13,8 +13,10 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, Socket
 		$scope.newUser = false;
 	};
 	$scope.sendMessage = function() {
+		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes();
 		Socket.emit('message', {
 			content: $scope.createMessageInfo.content,
+			time: time,
 			name: $scope.createUserInfo.username
 		});
 		$scope.createMessageInfo.content = '';
