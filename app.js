@@ -34,6 +34,18 @@ io.sockets.on('connection', function (socket) {
 		};
 		clients[msg.to].emit('private message', fromMsg);
 	});
+	socket.on('typing', function (user) {
+		console.log(user.name + ': is typeing');
+		socket.broadcast.emit('typing', {
+			name: user.name
+		});
+	});
+	socket.on('stop typing', function (user) {
+		console.log(user.name + ': stop typeing');
+		socket.broadcast.emit('stop typing', {
+			name: user.name
+		});
+	});
 	socket.on('disconnect', function() {
 		console.log('user has disconnected!');
 		delete clients[userName];

@@ -1,4 +1,4 @@
-angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, Socket) {
+angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeout, Socket) {
 	$scope.createUserInfo = {};
 	$scope.createMessageInfo = {};
 	$scope.newUser = true;
@@ -36,4 +36,39 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, Socket
 			}
 		});
 	}
+	// Events for user typing
+	var inputChangedPromise;
+	$scope.isTypeing = false;
+	$scope.wasTypeing = false;
+	$scope.someoneTyping = {};
+	$scope.inputChanged = function() {
+		if(inputChangedPromise) {
+			$scope.isTypeing = true;
+			sendTypeingEvent();
+			$timeout.cancel(inputChangedPromise);
+		}
+		inputChangedPromise = $timeout( function() {
+			$scope.isTypeing = false;
+			$scope.wasTypeing = false;
+			sendTypeingEvent();
+		},1000);
+	}
+	var sendTypeingEvent = function() {
+		if ($scope.isTypeing === true && $scope.wasTypeing === false) {
+			Socket.emit('typing', {
+				name: $scope.createUserInfo.username
+			});
+			$scope.wasTypeing = true;
+		} else if ($scope.isTypeing === false && $scope.wasTypeing === false){
+			Socket.emit('stop typing', {
+				name: $scope.createUserInfo.username
+			});
+		}
+	}
+	Socket.on('typing', function (data) {
+		$scope.someoneTyping.push(data);
+	});
+	Socket.on('stop typing', function (data) {
+		delete $scope.someoneTyping[data]
+	});
 });

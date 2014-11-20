@@ -26,9 +26,14 @@
 					<span class='message-time pull-right'>{{message.time}}</span>
 				</li>
 			</ul>
+			<ul class='chat-room-typing'>
+				<li ng-if='someoneTyping.length != 0' data-ng-repeat='typer in someoneTyping'>
+					{{typer}}
+				</li>
+			</ul>
 			<form method='post' ng-submit='sendMessage()' name='sendMessageForm'>
 				<div class='form-group has-feedback' ng-class="{ 'has-error' : sendMessageForm.content.$invalid && sendMessageForm.content.$dirty }">
-					<input class='form-control input-lg content-input' type='text' name='content' ng-model='createMessageInfo.content' placeholder='Message' ng-minlength='3' ng-maxlength='4000' required autofocus>
+					<input class='form-control input-lg content-input' type='text' name='content' ng-model='createMessageInfo.content' placeholder='Message' ng-minlength='3' ng-maxlength='4000' ng-change="inputChanged()" required autofocus>
 					<span class='form-control-feedback'></span>
 				</div>
 				<button type='submit' ng-disabled='sendMessageForm.$invalid' class='btn btn-lg btn-block btn-primary send-message-button'>Send Message</button>
