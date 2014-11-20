@@ -277,8 +277,12 @@ h6, .h6 {
 .chat-room-contents {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	height: 150px;
+	height: 157px;
+	padding-left: 0;
 }
 .message-contents {
 	word-wrap: break-word;
+}
+.message-time {
+	margin-right: 10px;
 }

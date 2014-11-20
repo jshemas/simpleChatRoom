@@ -3,8 +3,11 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, Socket
 	$scope.createMessageInfo = {};
 	$scope.newUser = true;
 	$scope.messages = [];
+	$scope.setForm = function (form) {
+		$scope.sendMessageForm = form;
+	}
 	Socket.on('message', function (data) {
-		$scope.messages.unshift(data);
+		$scope.messages.push(data);
 	});
 	$scope.signup = function() {
 		Socket.emit('connection name', {
@@ -20,5 +23,17 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, Socket
 			name: $scope.createUserInfo.username
 		});
 		$scope.createMessageInfo.content = '';
+		formReset($scope.sendMessageForm);
 	};
+	// reset form hack
+	var formReset = function(form) {
+		form.$pristine=true;
+		form.$dirty=false;
+		angular.forEach(form, function(input) {
+			if (typeof(input.$dirty) !== "undefined") {
+				input.$dirty = false;
+				input.$pristine = true;
+			}
+		});
+	}
 });
