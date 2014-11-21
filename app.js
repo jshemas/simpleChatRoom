@@ -10,48 +10,8 @@ var express = require('express'),
 
 var app = module.exports = express(),
 	server = http.createServer(app),
-	io = require('socket.io').listen(server),
-	clients = {},
-	userName;
-
-io.sockets.on('connection', function (socket) {
-	console.log('User has connected!');
-	socket.on('connection name',function(user) {
-		userName = user.name;
-		clients[user.name] = socket;
-		console.log('user has join and their name is:', user.name);
-		io.sockets.emit('new user', user.name + ' has joined.');
-	});
-	socket.on('message', function(msg) {
-		console.log('message has been sent! The contents is:', msg);
-		io.sockets.emit('message', msg);
-	});
-	socket.on('private message', function(msg) {
-		console.log('private message has been sent! The contents is:', msg);
-		var fromMsg = {
-			from: userName, 
-			txt: msg.txt
-		};
-		clients[msg.to].emit('private message', fromMsg);
-	});
-	socket.on('typing', function (user) {
-		console.log(user.name + ': is typeing');
-		io.sockets.emit('typing', {
-			name: user.name
-		});
-	});
-	socket.on('stop typing', function (user) {
-		console.log(user.name + ': stop typeing');
-		io.sockets.emit('stop typing', {
-			name: user.name
-		});
-	});
-	socket.on('disconnect', function() {
-		console.log('user has disconnected!');
-		delete clients[userName];
-	});
-});
-
+	io = require('socket.io').listen(server);
+	
 if (app.get('env') === 'prod') {
 	app.use(compress());
 	app.set('views', __dirname + '/dist/app');
@@ -92,7 +52,7 @@ app.use(function (req, res, next) {
 	next();
 });
 
-require('./server/routes.js')(app);
+require('./server/routes.js')(app, io);
 
 server.listen(app.get('port'), function() {
 	console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));

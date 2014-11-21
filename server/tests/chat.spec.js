@@ -7,11 +7,11 @@ var options = {
 	'force new connection': true
 };
 
-var chatUser1 = {'name':'Tom'};
-var chatUser2 = {'name':'Jim'};
-var chatUser3 = {'name':'Bob'};
+var chatUser1 = {'name':'Tom'},
+	chatUser2 = {'name':'Jim'},
+	chatUser3 = {'name':'Bob'};
 
-describe("Chat Server",function() {
+describe('connection name && new user - ',function() {
 	it('Should broadcast new user to all users', function(done) {
 		var client1 = io.connect(socketURL, options);
 		client1.on('connect', function(data) {
@@ -35,6 +35,9 @@ describe("Chat Server",function() {
 			}
 		});
 	});
+});
+
+describe('message - ',function() {
 	it('Should be able to broadcast messages', function(done){
 		var client1, client2, client3,
 			message = 'Hello World',
@@ -63,9 +66,12 @@ describe("Chat Server",function() {
 			});
 		});
 	});
+});
+
+describe('private message - ',function() {
 	it('Should be able to send private messages', function(done){
 		var client1, client2, client3,
-			message = {to: chatUser1.name, txt:'Private Hello World'},
+			message = {to: chatUser1.name, text:'Private Hello World'},
 			messages = 0;
 		var completeTest = function() {
 			messages.should.equal(1);
@@ -76,7 +82,7 @@ describe("Chat Server",function() {
 		};
 		var checkPrivateMessage = function(client) {
 			client.on('private message', function(msg) {
-				message.txt.should.equal(msg.txt);
+				message.text.should.equal(msg.text);
 				msg.from.should.equal(chatUser3.name);
 				messages++;
 				if(client === client1) {
