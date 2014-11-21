@@ -9,6 +9,15 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 	Socket.on('message', function (data) {
 		$scope.messages.push(data);
 	});
+	Socket.on('new user', function (data) {
+		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes();
+		$scope.messages.push({			
+			content: 'has joined!',
+			type: 'notify',
+			time: time,
+			name: data
+		});
+	});
 	$scope.signup = function() {
 		Socket.emit('connection name', {
 			name: $scope.createUserInfo.username
@@ -20,6 +29,7 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 		Socket.emit('message', {
 			content: $scope.createMessageInfo.content,
 			time: time,
+			type: 'message',
 			name: $scope.createUserInfo.username
 		});
 		$scope.createMessageInfo.content = '';

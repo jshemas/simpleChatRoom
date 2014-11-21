@@ -21,7 +21,10 @@
 		<div class='panel-body'>
 			<ul class='chat-room-contents' scroll-glue>
 				<li ng-if='messages.length != 0' data-ng-repeat='message in messages'>
-					<span class='message-by'>{{message.name}}:</span>
+					<span class='message-by'>
+						{{message.name}}
+						<span ng-if="message.type == 'message'">:</span>
+					</span>
 					<span class='message-contents'>{{message.content}}</span>
 					<span class='message-time pull-right'>{{message.time}}</span>
 				</li>

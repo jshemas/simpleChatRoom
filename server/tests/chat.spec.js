@@ -21,7 +21,7 @@ describe('connection name && new user - ',function() {
 				client2.emit('connection name', chatUser2);
 			});
 			client2.on('new user', function(usersName) {
-				usersName.should.equal(chatUser2.name + " has joined.");
+				usersName.should.equal(chatUser2.name);
 				client2.disconnect();
 			});
 		});
@@ -29,7 +29,7 @@ describe('connection name && new user - ',function() {
 		client1.on('new user', function(usersName) {
 			numUsers += 1;
 			if (numUsers === 2) {
-				usersName.should.equal(chatUser2.name + " has joined.");
+				usersName.should.equal(chatUser2.name);
 				client1.disconnect();
 				done();
 			}
@@ -44,7 +44,7 @@ describe('message - ',function() {
 			messages = 0;
 		var checkMessage = function(client) {
 			client.on('message', function(msg) {
-				message.should.equal(msg);
+				message.should.equal(msg.content);
 				client.disconnect();
 				messages++;
 				if (messages === 3) {
@@ -61,7 +61,14 @@ describe('message - ',function() {
 				client3 = io.connect(socketURL, options);
 				checkMessage(client3);
 				client3.on('connect', function(data) {
-					client2.send(message);
+					var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes(),
+						messageObj = {
+							content: message,
+							time: time,
+							type: 'message',
+							name: chatUser3.name
+						};
+					client2.send(messageObj);
 				});
 			});
 		});

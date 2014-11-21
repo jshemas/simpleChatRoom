@@ -9,7 +9,7 @@ module.exports = function (app, io) {
 			clientUserName = user.name;
 			listOfClients[user.name] = socket;
 			// console.log(user.name + ' has joined');
-			io.sockets.emit('new user', user.name + ' has joined.');
+			io.sockets.emit('new user', user.name);
 		});
 		socket.on('message', function(message) {
 			// console.log('Message has been sent! The contents is:', message);
