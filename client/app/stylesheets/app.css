@@ -274,10 +274,13 @@ h6, .h6 {
 }
 
 /* Chat Room */
+.chat-room {
+	width: auto;
+}
 .chat-room-contents {
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
-	height: 157px;
+	height: 400px;
 	padding-left: 0;
 }
 .message-contents {
@@ -287,5 +290,6 @@ h6, .h6 {
 	margin-right: 10px;
 }
 .chat-room-typing {
+	min-height: 20px;
 	padding-left: 0;
 }
