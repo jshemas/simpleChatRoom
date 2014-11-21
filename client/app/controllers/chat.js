@@ -40,7 +40,7 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 	var inputChangedPromise;
 	$scope.isTypeing = false;
 	$scope.wasTypeing = false;
-	$scope.someoneTyping = {};
+	$scope.someoneTyping = [];
 	$scope.inputChanged = function() {
 		if(inputChangedPromise) {
 			$scope.isTypeing = true;
@@ -59,7 +59,7 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 				name: $scope.createUserInfo.username
 			});
 			$scope.wasTypeing = true;
-		} else if ($scope.isTypeing === false && $scope.wasTypeing === false){
+		} else if ($scope.isTypeing === false && $scope.wasTypeing === false) {
 			Socket.emit('stop typing', {
 				name: $scope.createUserInfo.username
 			});
@@ -69,6 +69,6 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 		$scope.someoneTyping.push(data);
 	});
 	Socket.on('stop typing', function (data) {
-		delete $scope.someoneTyping[data]
+		$scope.someoneTyping.splice($scope.someoneTyping.indexOf(data), 1);
 	});
 });

@@ -36,13 +36,13 @@ io.sockets.on('connection', function (socket) {
 	});
 	socket.on('typing', function (user) {
 		console.log(user.name + ': is typeing');
-		socket.broadcast.emit('typing', {
+		io.sockets.emit('typing', {
 			name: user.name
 		});
 	});
 	socket.on('stop typing', function (user) {
 		console.log(user.name + ': stop typeing');
-		socket.broadcast.emit('stop typing', {
+		io.sockets.emit('stop typing', {
 			name: user.name
 		});
 	});

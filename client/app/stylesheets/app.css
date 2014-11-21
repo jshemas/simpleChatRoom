@@ -286,3 +286,6 @@ h6, .h6 {
 .message-time {
 	margin-right: 10px;
 }
+.chat-room-typing {
+	padding-left: 0;
+}

@@ -28,7 +28,7 @@
 			</ul>
 			<ul class='chat-room-typing'>
 				<li ng-if='someoneTyping.length != 0' data-ng-repeat='typer in someoneTyping'>
-					{{typer}}
+					<span>{{typer.name}} is typing</span>
 				</li>
 			</ul>
 			<form method='post' ng-submit='sendMessage()' name='sendMessageForm'>
