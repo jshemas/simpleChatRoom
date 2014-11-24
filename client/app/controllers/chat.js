@@ -3,11 +3,15 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 	$scope.createMessageInfo = {};
 	$scope.newUser = true;
 	$scope.messages = [];
+	$scope.userList = [];
 	$scope.setForm = function (form) {
 		$scope.sendMessageForm = form;
 	}
 	Socket.on('message', function (data) {
 		$scope.messages.push(data);
+	});
+	Socket.on('user list', function (data) {
+		$scope.userList = data.userList;
 	});
 	Socket.on('new user', function (data) {
 		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());

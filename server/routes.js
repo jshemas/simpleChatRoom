@@ -2,14 +2,20 @@
 
 module.exports = function (app, io) {
 	var listOfClients = {},
+		listOfCurrentUsername = [],
 		clientUserName;
 	io.sockets.on('connection', function (socket) {
 		// console.log('Someone has connected!');
 		socket.on('connection name',function(user) {
 			clientUserName = user.name;
-			listOfClients[user.name] = socket;
 			// console.log(user.name + ' has joined');
+			listOfClients[user.name] = socket;
+			listOfCurrentUsername.push({'name':user.name});
 			io.sockets.emit('new user', user.name);
+			// console.log('add to user list: ', listOfCurrentUsername);
+			io.sockets.emit('user list', {
+				userList: listOfCurrentUsername
+			});
 		});
 		socket.on('message', function(message) {
 			// console.log('Message has been sent! The contents is:', message);
@@ -36,8 +42,15 @@ module.exports = function (app, io) {
 			});
 		});
 		socket.on('disconnect', function() {
-			// console.log('User has Disconnected');
+			// console.log(clientUserName,' has Disconnected');
 			delete listOfClients[clientUserName];
+			if (clientUserName !== undefined) {
+				listOfCurrentUsername.pop(clientUserName);
+				// console.log('remove from user list: ', listOfCurrentUsername);
+				io.sockets.emit('user list', {
+					userList: listOfCurrentUsername
+				});
+			}
 		});
 	});
 	// All other get requests should be handled by AngularJS's client-side routing system
