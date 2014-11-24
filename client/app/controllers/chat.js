@@ -65,7 +65,7 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 			$scope.isTypeing = false;
 			$scope.wasTypeing = false;
 			sendTypeingEvent();
-		},10000);
+		},1000);
 	}
 	var sendTypeingEvent = function() {
 		if ($scope.isTypeing === true && $scope.wasTypeing === false) {
@@ -86,5 +86,10 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 	});
 	Socket.on('stop typing', function (data) {
 		$scope.someoneTyping.splice($scope.someoneTyping.indexOf(data), 1);
+	});
+	Socket.on('disconnect', function (data) {
+		$scope.createUserInfo = {};
+		$scope.createMessageInfo = {};
+		$scope.newUser = true;
 	});
 });

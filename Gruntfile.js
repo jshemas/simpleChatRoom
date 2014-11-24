@@ -133,7 +133,7 @@ module.exports = function (grunt) {
 				tasks: ['jshint', 'default']
 			},
 			express: {
-				files:  [ 'server/*.js' ],
+				files:  [ 'server/*.js','client/app/*.js', 'client/app/controllers/*.js', 'client/app/directives/*.js', 'client/app/services/*.js', 'client/app/vendor/*.js'],
 				tasks:  [ 'express:dev' ],
 				options: {
 					nospawn: true
