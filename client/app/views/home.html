@@ -29,11 +29,11 @@
 					<span class='message-time pull-right'>{{message.time}}</span>
 				</li>
 			</ul>
-			<ul class='chat-room-typing'>
-				<li ng-if='someoneTyping.length != 0' data-ng-repeat='typer in someoneTyping'>
-					<span>{{typer.name}} is typing</span>
-				</li>
-			</ul>
+			<div class='chat-room-typing'>
+				<span ng-if='someoneTyping.length == 1' >{{someoneTyping[0].name}} is typing</span>
+				<span ng-if='someoneTyping.length == 2' >{{someoneTyping[0].name}} and {{someoneTyping[1].name}} is typing</span>
+				<span ng-if='someoneTyping.length >= 3' >Several people are typing</span>
+			</div>
 			<form method='post' ng-submit='sendMessage()' name='sendMessageForm'>
 				<div class='form-group has-feedback' ng-class="{ 'has-error' : sendMessageForm.content.$invalid && sendMessageForm.content.$dirty }">
 					<input class='form-control input-lg content-input' type='text' name='content' ng-model='createMessageInfo.content' placeholder='Message' ng-minlength='3' ng-maxlength='4000' ng-change="inputChanged()" required autofocus>
