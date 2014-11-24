@@ -61,7 +61,7 @@ describe('message - ',function() {
 				client3 = io.connect(socketURL, options);
 				checkMessage(client3);
 				client3.on('connect', function(data) {
-					var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes(),
+					var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()),
 						messageObj = {
 							content: message,
 							time: time,

@@ -10,8 +10,8 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 		$scope.messages.push(data);
 	});
 	Socket.on('new user', function (data) {
-		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes();
-		$scope.messages.push({			
+		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
+		$scope.messages.push({
 			content: 'has joined!',
 			type: 'notify',
 			time: time,
@@ -25,7 +25,7 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 		$scope.newUser = false;
 	};
 	$scope.sendMessage = function() {
-		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + new Date().getMinutes();
+		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
 		Socket.emit('message', {
 			content: $scope.createMessageInfo.content,
 			time: time,
