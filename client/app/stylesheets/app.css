@@ -277,7 +277,8 @@ h6, .h6 {
 .chat-room {
 	width: auto;
 }
-.chat-room-contents {
+.chat-room-contents,
+.user-list-contents {
 	overflow-y: auto;
 	overflow-x: hidden;
 	height: 400px;
@@ -292,4 +293,10 @@ h6, .h6 {
 .chat-room-typing {
 	min-height: 20px;
 	padding-left: 0;
+}
+.chat-room-container {
+	padding-left: 0;
+}
+.user-list {
+	padding-right: 0;
 }
