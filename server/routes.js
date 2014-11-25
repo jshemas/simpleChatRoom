@@ -2,9 +2,9 @@
 
 module.exports = function (app, io) {
 	var listOfClients = {},
-		listOfCurrentUsername = [],
-		clientUserName;
+		listOfCurrentUsername = [];
 	io.sockets.on('connection', function (socket) {
+		var clientUserName;
 		// console.log('Someone has connected!');
 		socket.on('connection name',function(user) {
 			clientUserName = user.name;
@@ -45,7 +45,9 @@ module.exports = function (app, io) {
 			// console.log(clientUserName,' has Disconnected');
 			delete listOfClients[clientUserName];
 			if (clientUserName !== undefined) {
-				listOfCurrentUsername.pop(clientUserName);
+				listOfCurrentUsername = listOfCurrentUsername.filter(function(user) {
+					return user.name !== clientUserName;  
+				});
 				// console.log('remove from user list: ', listOfCurrentUsername);
 				io.sockets.emit('user list', {
 					userList: listOfCurrentUsername
