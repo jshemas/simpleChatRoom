@@ -13,15 +13,6 @@ angular.module('simpleChatRoom').controller('ChatCtrl', function ($scope, $timeo
 	Socket.on('user list', function (data) {
 		$scope.userList = data.userList;
 	});
-	Socket.on('new user', function (data) {
-		var time = ((new Date().getHours() + 11) % 12 + 1) + ":" + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
-		$scope.messages.push({
-			content: 'has joined!',
-			type: 'notify',
-			time: time,
-			name: data
-		});
-	});
 	$scope.signup = function() {
 		Socket.emit('connection name', {
 			name: $scope.createUserInfo.username

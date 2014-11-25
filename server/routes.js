@@ -16,6 +16,13 @@ module.exports = function (app, io) {
 			io.sockets.emit('user list', {
 				userList: listOfCurrentUsername
 			});
+			var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
+			io.sockets.emit('message', {
+				content: 'has joined!',
+				type: 'notify',
+				time: time,
+				name: clientUserName
+			});
 		});
 		socket.on('message', function(message) {
 			// console.log('Message has been sent! The contents is:', message);
@@ -51,6 +58,13 @@ module.exports = function (app, io) {
 				// console.log('remove from user list: ', listOfCurrentUsername);
 				io.sockets.emit('user list', {
 					userList: listOfCurrentUsername
+				});
+				var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
+				io.sockets.emit('message', {
+					content: 'has left!',
+					type: 'notify',
+					time: time,
+					name: clientUserName
 				});
 			}
 		});
