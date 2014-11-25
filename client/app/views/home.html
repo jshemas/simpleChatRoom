@@ -21,7 +21,7 @@
 			<div class='panel panel-default'>
 				<div class='panel-heading'>User List</div>
 				<div class='panel-body'>
-					<ul class='user-list-contents'>
+					<ul class='user-list-contents' ng-style="style()" resize>
 						<li ng-if='userList.length != 0' data-ng-repeat='username in userList'>
 							<span>{{username.name}}</span>
 						</li>
@@ -33,7 +33,7 @@
 			<div class='panel panel-default'>
 				<div class='panel-heading'>Chat Room</div>
 				<div class='panel-body'>
-					<ul class='chat-room-contents' scroll-glue>
+					<ul class='chat-room-contents' scroll-glue ng-style="style()" resize>
 						<li ng-if='messages.length != 0' data-ng-repeat='message in messages'>
 							<span class='message-by'>
 								{{message.name}}

@@ -281,7 +281,6 @@ h6, .h6 {
 .user-list-contents {
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 400px;
 	padding-left: 0;
 }
 .message-contents {
