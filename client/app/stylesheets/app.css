@@ -293,10 +293,18 @@ h6, .h6 {
 .chat-room-typing {
 	min-height: 20px;
 	padding-left: 0;
+	padding-bottom: 5px;
 }
 .chat-room-container {
 	padding-left: 0;
 }
 .user-list {
 	padding-right: 0;
+}
+.user-list li {
+	border-bottom: 1px solid #cfd9db;
+	margin-bottom: 5px;
+}
+.user-list li:last-of-type {
+	border-bottom: none;
 }

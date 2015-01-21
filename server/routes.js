@@ -16,7 +16,7 @@ module.exports = function (app, io) {
 			io.sockets.emit('user list', {
 				userList: listOfCurrentUsername
 			});
-			var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
+			var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()) + ' ' + (new Date().getHours() >= 12 ? 'pm' : 'am');
 			io.sockets.emit('message', {
 				content: 'has joined!',
 				type: 'notify',
@@ -59,7 +59,7 @@ module.exports = function (app, io) {
 				io.sockets.emit('user list', {
 					userList: listOfCurrentUsername
 				});
-				var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes());
+				var time = ((new Date().getHours() + 11) % 12 + 1) + ':' + ((new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()) + ' ' + (new Date().getHours() >= 12 ? 'pm' : 'am');
 				io.sockets.emit('message', {
 					content: 'has left!',
 					type: 'notify',

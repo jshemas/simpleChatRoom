@@ -17,7 +17,7 @@ angular.module('simpleChatRoom').directive('resize', function ($window) {
 				};
 			};
 		}, true);
-		w.bind('resize', function () {
+		windowCont.bind('resize', function () {
 			scope.$apply();
 		});
 	}
