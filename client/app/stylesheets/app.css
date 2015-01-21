@@ -282,6 +282,7 @@ h6, .h6 {
 	overflow-y: auto;
 	overflow-x: hidden;
 	padding-left: 0;
+	display: block;
 }
 .message-contents {
 	word-wrap: break-word;
