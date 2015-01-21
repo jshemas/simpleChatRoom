@@ -1,14 +1,9 @@
-# MAC
-*.DS_Store
-
 # Logs
 logs
 *.log
-npm-debug.log
 
 # Runtime data
 pids
-results
 *.pid
 *.seed
 
@@ -21,16 +16,19 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+# node-waf configuration
+.lock-wscript
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
+/dist
 
 # Dependency directory
-# Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
 
-# Users Environment Variables
-.lock-wscript
+# Debug log from npm
+npm-debug.log
 
-# build project
-dist/
+# Mac Stuff
+*.DS_Store
