@@ -11,7 +11,7 @@ var express = require('express'),
 var app = module.exports = express(),
 	server = http.createServer(app),
 	io = require('socket.io').listen(server);
-	
+
 if (app.get('env') === 'prod') {
 	app.use(compress());
 	app.set('views', __dirname + '/dist/app');

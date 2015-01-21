@@ -26,7 +26,7 @@ h6, .h6 {
 }
 
 /* sets cursor */
-.nav, .pagination, .carousel a { 
+.nav, .pagination, .carousel a {
 	cursor: pointer;
 }
 

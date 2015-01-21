@@ -31,7 +31,7 @@ module.exports = function (app, io) {
 		socket.on('private message', function(message) {
 			// console.log('Private message has been sent! The contents is:', message);
 			var fromMessageObj = {
-				from: clientUserName, 
+				from: clientUserName,
 				text: message.text
 			};
 			listOfClients[message.to].emit('private message', fromMessageObj);
@@ -53,7 +53,7 @@ module.exports = function (app, io) {
 			delete listOfClients[clientUserName];
 			if (clientUserName !== undefined) {
 				listOfCurrentUsername = listOfCurrentUsername.filter(function(user) {
-					return user.name !== clientUserName;  
+					return user.name !== clientUserName;
 				});
 				// console.log('remove from user list: ', listOfCurrentUsername);
 				io.sockets.emit('user list', {
